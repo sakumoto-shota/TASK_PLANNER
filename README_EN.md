@@ -169,6 +169,7 @@ Task Planner progresses from requirements to implementation through the followin
 | `execute` | Execute tasks                  | `./task-planner.sh execute task-name`         |
 | `list`    | Display task list              | `./task-planner.sh list`                      |
 | `config`  | Configure AI tool              | `./task-planner.sh config claude`             |
+| `help`    | Show help information          | `./task-planner.sh help`                      |
 
 ### File Structure
 

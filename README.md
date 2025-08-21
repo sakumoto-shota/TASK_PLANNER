@@ -169,6 +169,7 @@ Task Planner は要件から実装まで以下の 3 つの段階で進行しま�
 | `execute` | タスクを実行           | `./task-planner.sh execute タスク名`          |
 | `list`    | タスク一覧を表示       | `./task-planner.sh list`                      |
 | `config`  | AI ツール設定          | `./task-planner.sh config claude`             |
+| `help`    | ヘルプ表示            | `./task-planner.sh help`                      |
 
 ### ファイル構成
 
