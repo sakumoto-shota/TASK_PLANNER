@@ -37,6 +37,8 @@ Task Planner supports the entire process from requirement definition to implemen
 
 ## Setup
 
+### Basic Setup
+
 1. Make the script executable:
 
 ```bash
@@ -47,6 +49,73 @@ chmod +x task-planner.sh
 
 ```bash
 ./task-planner.sh config claude    # Use Claude CLI
+```
+
+### Integration into Existing Projects
+
+Steps to integrate Task Planner into existing projects:
+
+#### 1. Copy Files
+
+```bash
+# Navigate to your existing project directory
+cd /path/to/your/project
+
+# Copy Task Planner files
+curl -O https://raw.githubusercontent.com/sakumoto-shota/TASK_PLANNER/main/task-planner.sh
+curl -O https://raw.githubusercontent.com/sakumoto-shota/TASK_PLANNER/main/config/plan-prompt.md
+curl -O https://raw.githubusercontent.com/sakumoto-shota/TASK_PLANNER/main/config/task-prompt.md
+curl -O https://raw.githubusercontent.com/sakumoto-shota/TASK_PLANNER/main/config/execute-prompt.md
+
+# Or copy from this repository
+cp /path/to/task_planner/task-planner.sh .
+cp -r /path/to/task_planner/config .
+```
+
+#### 2. Set Execution Permissions
+
+```bash
+chmod +x task-planner.sh
+```
+
+#### 3. Verify Directory Structure
+
+Example project structure after integration:
+
+```
+your-project/
+├── src/                  # Existing source code
+├── docs/                 # Existing documentation
+├── task-planner.sh       # ✅ Added
+├── config/               # ✅ Added
+│   ├── plan-prompt.md
+│   ├── task-prompt.md
+│   └── execute-prompt.md
+└── AI_TASKS/             # ✅ Auto-created during execution
+    └── [task-name]/
+        ├── PLAN.md
+        ├── TASK.md
+        └── PR.md
+```
+
+#### 4. Configure .gitignore (Recommended)
+
+```bash
+# Add to .gitignore (whether to manage AI_TASKS directory depends on project)
+echo "AI_TASKS/" >> .gitignore
+
+# Or exclude only work-in-progress tasks
+echo "AI_TASKS/*/plan_prompt.txt" >> .gitignore
+echo "AI_TASKS/*/stream_output.json" >> .gitignore
+```
+
+#### 5. Project-Specific Customization
+
+```bash
+# Customize prompts to match your project's technology stack
+vim config/plan-prompt.md
+vim config/task-prompt.md
+vim config/execute-prompt.md
 ```
 
 ## Usage

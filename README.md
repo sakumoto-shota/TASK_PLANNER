@@ -37,6 +37,8 @@ Task Planner は、要件定義から実装まで以下の 3 段階でサポー�
 
 ## セットアップ
 
+### 基本セットアップ
+
 1. スクリプトを実行可能にする:
 
 ```bash
@@ -47,6 +49,73 @@ chmod +x task-planner.sh
 
 ```bash
 ./task-planner.sh config claude    # Claude CLIを使用
+```
+
+### 既存プロジェクトへの導入
+
+Task Plannerを既存のプロジェクトに導入する場合の手順：
+
+#### 1. ファイルのコピー
+
+```bash
+# 既存のプロジェクトディレクトリに移動
+cd /path/to/your/project
+
+# Task Plannerファイルをコピー
+curl -O https://raw.githubusercontent.com/sakumoto-shota/TASK_PLANNER/main/task-planner.sh
+curl -O https://raw.githubusercontent.com/sakumoto-shota/TASK_PLANNER/main/config/plan-prompt.md
+curl -O https://raw.githubusercontent.com/sakumoto-shota/TASK_PLANNER/main/config/task-prompt.md
+curl -O https://raw.githubusercontent.com/sakumoto-shota/TASK_PLANNER/main/config/execute-prompt.md
+
+# または、このリポジトリから必要ファイルをコピー
+cp /path/to/task_planner/task-planner.sh .
+cp -r /path/to/task_planner/config .
+```
+
+#### 2. 実行権限の設定
+
+```bash
+chmod +x task-planner.sh
+```
+
+#### 3. ディレクトリ構造の確認
+
+導入後のプロジェクト構造例：
+
+```
+your-project/
+├── src/                  # 既存のソースコード
+├── docs/                 # 既存のドキュメント
+├── task-planner.sh       # ✅ 追加
+├── config/               # ✅ 追加
+│   ├── plan-prompt.md
+│   ├── task-prompt.md
+│   └── execute-prompt.md
+└── AI_TASKS/             # ✅ 実行時に自動作成
+    └── [task-name]/
+        ├── PLAN.md
+        ├── TASK.md
+        └── PR.md
+```
+
+#### 4. .gitignoreの設定（推奨）
+
+```bash
+# .gitignoreに追加（AI_TASKSディレクトリを管理対象にするかはプロジェクト次第）
+echo "AI_TASKS/" >> .gitignore
+
+# または、作業中のタスクのみ除外
+echo "AI_TASKS/*/plan_prompt.txt" >> .gitignore
+echo "AI_TASKS/*/stream_output.json" >> .gitignore
+```
+
+#### 5. プロジェクト固有のカスタマイズ
+
+```bash
+# プロジェクトの技術スタックに合わせてプロンプトをカスタマイズ
+vim config/plan-prompt.md
+vim config/task-prompt.md
+vim config/execute-prompt.md
 ```
 
 ## 使用方法
