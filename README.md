@@ -1,5 +1,9 @@
 # Task Planner
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Bash](https://img.shields.io/badge/Shell-Bash-green.svg)](https://www.gnu.org/software/bash/)
+[![Claude AI](https://img.shields.io/badge/AI-Claude-blue.svg)](https://claude.ai/)
+
 簡易的な AI タスクプランナー - 要件から実装まで段階的にサポートする Bash ツール
 
 ## 概要
@@ -348,3 +352,17 @@ ls -la AI_TASKS/[task-name]/
 - **並列処理**: 複数タスクを並行して plan → task まで進行可能
 - **プロンプト最適化**: `config/`ファイルを調整して応答速度向上
 - **キャッシュ活用**: 類似タスクの PLAN.md を参考テンプレートとして活用
+
+## ライセンス・貢献
+
+### ライセンス
+
+このプロジェクトは [MIT ライセンス](LICENSE) の下で公開されています。
+
+### コントリビュート・フォーク
+
+- 🍴 **フォーク自由**: このリポジトリを自由にフォークして、ご自身のニーズに合わせてカスタマイズしてください
+- 🛠️ **改善提案**: Issue や Pull Request を通じて改善提案をお待ちしています
+- 💡 **アイデア共有**: 新機能のアイデアや使用例の共有も歓迎です
+
+皆様のご協力により、より良いツールを作り上げていきましょう！
