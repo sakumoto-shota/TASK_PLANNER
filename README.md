@@ -1,10 +1,16 @@
 # Task Planner
 
+<div align="center">
+  <img src="logo.png" alt="Task Planner Logo" width="400">
+</div>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Bash](https://img.shields.io/badge/Shell-Bash-green.svg)](https://www.gnu.org/software/bash/)
 [![Claude AI](https://img.shields.io/badge/AI-Claude-blue.svg)](https://claude.ai/)
 
 簡易的な AI タスクプランナー - 要件から実装まで段階的にサポートする Bash ツール
+
+> [English README](README_EN.md) | [日本語 README](README.md)
 
 ## 概要
 
