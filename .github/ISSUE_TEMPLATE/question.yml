@@ -1,0 +1,91 @@
+name: ❓ Question / 質問
+description: Ask a question about Task Planner / Task Plannerについて質問する
+title: "[QUESTION] "
+labels: ["question", "needs-answer"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome! We're here to help answer your questions about Task Planner.
+        ようこそ！Task Plannerに関するご質問にお答えします。
+        
+        Before asking, please check:
+        質問前に以下をご確認ください：
+        - [Documentation / ドキュメント](https://github.com/sakumoto-shota/TASK_PLANNER/blob/main/README.md)
+        - [Existing issues / 既存のissue](https://github.com/sakumoto-shota/TASK_PLANNER/issues)
+
+  - type: textarea
+    id: question-description
+    attributes:
+      label: Question / 質問内容
+      description: What would you like to know? / 何について知りたいですか？
+      placeholder: |
+        Please describe your question clearly...
+        質問内容を明確に記述してください...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: question-category
+    attributes:
+      label: Category / カテゴリ
+      description: What category does your question fall into? / 質問のカテゴリを選択してください
+      options:
+        - Installation / インストール
+        - Configuration / 設定
+        - Usage / 使用方法
+        - Customization / カスタマイズ
+        - Integration / 統合
+        - Performance / パフォーマンス
+        - Security / セキュリティ
+        - Troubleshooting / トラブルシューティング
+        - Other / その他
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-tried
+    attributes:
+      label: What have you tried? / 試したこと
+      description: What have you already attempted? / 既に試したことがあれば教えてください
+      placeholder: |
+        Describe what you've already tried...
+        既に試したことを説明してください...
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment / 環境情報
+      description: Information about your environment / 環境に関する情報
+      placeholder: |
+        - OS: macOS 14.0
+        - Bash version: 5.0
+        - Claude CLI version: 0.1.0
+        - Project type: Web application
+        
+        - OS: macOS 14.0
+        - Bashバージョン: 5.0
+        - Claude CLIバージョン: 0.1.0
+        - プロジェクトタイプ: Webアプリケーション
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context / 追加情報
+      description: Any other relevant information / その他の関連情報
+      placeholder: Any additional context... / 追加の背景情報があれば...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist / チェックリスト
+      description: Please confirm the following / 以下を確認してください
+      options:
+        - label: I have read the documentation / ドキュメントを読みました
+          required: true
+        - label: I have searched for existing issues / 既存のissueを検索しました
+          required: true
+        - label: This is a genuine question, not a bug report / これは純粋な質問で、バグレポートではありません
+          required: true

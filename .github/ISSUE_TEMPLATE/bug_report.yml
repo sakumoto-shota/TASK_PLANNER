@@ -1,0 +1,114 @@
+name: 🐛 Bug Report / バグレポート
+description: Report a bug to help us improve Task Planner / Task Plannerのバグを報告して改善にご協力ください
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! / バグレポートをお送りいただきありがとうございます！
+        
+        Please provide as much detail as possible to help us reproduce and fix the issue.
+        問題の再現と修正のため、可能な限り詳細な情報をお提供ください。
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description / バグの説明
+      description: A clear and concise description of what the bug is / バグの内容を明確かつ簡潔に説明してください
+      placeholder: Describe the bug here... / ここにバグの内容を記述してください...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce / 再現手順
+      description: Steps to reproduce the behavior / 問題を再現するための手順
+      placeholder: |
+        1. Run './task-planner.sh plan "..."'
+        2. Execute './task-planner.sh task ...'
+        3. See error
+        
+        1. './task-planner.sh plan "..."' を実行
+        2. './task-planner.sh task ...' を実行
+        3. エラーが発生
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior / 期待される動作
+      description: What you expected to happen / 期待していた動作を説明してください
+      placeholder: Describe what you expected to happen... / 期待していた動作を記述してください...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior / 実際の動作
+      description: What actually happened / 実際に起こった動作
+      placeholder: Describe what actually happened... / 実際に起こった動作を記述してください...
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Error Output / エラー出力
+      description: Please copy and paste any relevant error output / 関連するエラー出力をコピー＆ペーストしてください
+      render: shell
+      placeholder: Paste error output here... / ここにエラー出力を貼り付けてください...
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Operating System / オペレーティングシステム
+      description: What OS are you running? / 使用しているOSを選択してください
+      options:
+        - macOS
+        - Ubuntu/Debian
+        - CentOS/RHEL
+        - Windows (WSL)
+        - Other Linux
+        - Other / その他
+    validations:
+      required: true
+
+  - type: input
+    id: bash-version
+    attributes:
+      label: Bash Version / Bashバージョン
+      description: Output of `bash --version` / `bash --version` の出力
+      placeholder: GNU bash, version 5.0.17(1)-release
+
+  - type: input
+    id: claude-version
+    attributes:
+      label: Claude CLI Version / Claude CLIバージョン
+      description: Output of `claude --version` / `claude --version` の出力
+      placeholder: claude-cli 0.1.0
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context / 追加情報
+      description: Add any other context about the problem here / 問題に関する追加情報があれば記述してください
+      placeholder: Any additional information... / 追加情報があれば...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist / チェックリスト
+      description: Please confirm the following / 以下を確認してください
+      options:
+        - label: I have read the documentation / ドキュメントを読みました
+          required: true
+        - label: I have searched for existing issues / 既存のissueを検索しました
+          required: true
+        - label: This is not a security vulnerability / これはセキュリティ脆弱性ではありません
+          required: true

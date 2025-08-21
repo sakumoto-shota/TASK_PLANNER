@@ -1,0 +1,116 @@
+name: ✨ Feature Request / 機能要望
+description: Suggest a new feature or enhancement / 新機能や改善を提案してください
+title: "[FEATURE] "
+labels: ["enhancement", "needs-discussion"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! / 新機能の提案をありがとうございます！
+        
+        Please provide detailed information about your feature request.
+        機能要望について詳細な情報をお提供ください。
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description / 機能の説明
+      description: A clear and concise description of the feature you'd like to see / 希望する機能を明確かつ簡潔に説明してください
+      placeholder: Describe the feature... / 機能について説明してください...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement / 解決したい問題
+      description: What problem would this feature solve? / この機能はどのような問題を解決しますか？
+      placeholder: |
+        Is your feature request related to a problem? Please describe.
+        Example: "I'm always frustrated when..."
+        
+        この機能要望は問題に関連していますか？説明してください。
+        例：「...のときにいつも困っています」
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution / 提案する解決策
+      description: Describe the solution you'd like / 希望する解決策を説明してください
+      placeholder: |
+        Describe the solution you'd like to see implemented.
+        実装してほしい解決策を説明してください。
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions / 代替案
+      description: Describe any alternative solutions you've considered / 検討した代替案があれば説明してください
+      placeholder: |
+        Have you considered any alternative approaches?
+        別のアプローチを検討しましたか？
+
+  - type: dropdown
+    id: feature-area
+    attributes:
+      label: Feature Area / 機能領域
+      description: Which area does this feature relate to? / この機能はどの領域に関連しますか？
+      options:
+        - Core functionality / コア機能
+        - User interface / ユーザーインターフェース
+        - Performance / パフォーマンス
+        - Documentation / ドキュメント
+        - Configuration / 設定
+        - AI integration / AI統合
+        - Error handling / エラーハンドリング
+        - Other / その他
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority / 優先度
+      description: How important is this feature to you? / この機能はどの程度重要ですか？
+      options:
+        - Low / 低
+        - Medium / 中
+        - High / 高
+        - Critical / 重要
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases / 使用例
+      description: Describe specific use cases for this feature / この機能の具体的な使用例を説明してください
+      placeholder: |
+        How would you use this feature?
+        この機能をどのように使用しますか？
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context / 追加情報
+      description: Add any other context, screenshots, or examples / その他の背景情報、スクリーンショット、例があれば追加してください
+      placeholder: Any additional information... / 追加情報があれば...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist / チェックリスト
+      description: Please confirm the following / 以下を確認してください
+      options:
+        - label: I have read the documentation / ドキュメントを読みました
+          required: true
+        - label: I have searched for existing issues / 既存のissueを検索しました
+          required: true
+        - label: This feature aligns with the project goals / この機能はプロジェクトの目標に合致しています
+          required: true
