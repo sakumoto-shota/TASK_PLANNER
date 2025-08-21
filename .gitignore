@@ -102,3 +102,6 @@ temp/
 # AI workspace
 ai-plan/
 AI_TASKS/
+
+# Config files should be included
+!config/

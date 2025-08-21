@@ -16,8 +16,9 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # 設定
-AI_PLAN_DIR="ai-plan"
+AI_PLAN_DIR="AI_TASKS"
 AI_TOOL="claude" # または "cursor"
+CONFIG_DIR="config"
 
 # 色定義
 RED='\033[0;31m'
@@ -235,6 +236,30 @@ show_help() {
     echo "  $0 execute login-feature"
 }
 
+# プロンプト読み込み関数
+load_prompt() {
+    local prompt_type="$1"
+    local task_name="$2"
+    local content="$3"
+    
+    local prompt_file="$CONFIG_DIR/${prompt_type}-prompt.md"
+    
+    if [ -f "$prompt_file" ]; then
+        local prompt_content=$(cat "$prompt_file")
+        
+        # プレースホルダーを置換
+        prompt_content="${prompt_content//\{\{TASK_NAME\}\}/$task_name}"
+        prompt_content="${prompt_content//\{\{REQUIREMENT\}\}/$content}"
+        prompt_content="${prompt_content//\{\{PLAN_CONTENT\}\}/$content}"
+        prompt_content="${prompt_content//\{\{TASK_CONTENT\}\}/$content}"
+        
+        echo "$prompt_content"
+    else
+        echo "エラー: プロンプトファイルが見つかりません: $prompt_file" >&2
+        return 1
+    fi
+}
+
 # AIツール設定
 get_ai_command() {
     local mode="$1"
@@ -287,38 +312,12 @@ create_plan() {
     # ディレクトリ作成
     mkdir -p "$task_dir"
     
-    # プラン作成用のプロンプトを準備
-    local plan_prompt="以下の要件に基づいて詳細な実装プランを作成してください:
-
-要件: $requirement
-
-以下の形式でPLAN.mdを作成してください:
-
-# $task_name - 実装プラン
-
-## 概要
-- 要件の詳細説明
-
-## アーキテクチャ
-- システム構成
-- 使用技術
-
-## 実装手順
-1. 環境セットアップ
-2. 基本構造の作成
-3. 機能実装
-4. テスト
-5. ドキュメント作成
-
-## ファイル構成
-- 作成予定のファイル一覧
-
-## 注意点・考慮事項
-- セキュリティ
-- パフォーマンス
-- その他重要な点
-
-このプランは後続のタスク作成と実装で参照されます。"
+    # プラン作成用のプロンプトを読み込み
+    local plan_prompt=$(load_prompt "plan" "$task_name" "$requirement")
+    if [ $? -ne 0 ]; then
+        show_error "プロンプトファイルの読み込みに失敗しました"
+        exit 1
+    fi
     
     # プロンプトをファイルに保存
     echo "$plan_prompt" > "$task_dir/plan_prompt.txt"
@@ -398,52 +397,12 @@ create_task() {
         plan_content="プランファイルが見つかりません"
     fi
     
-    # タスク作成用のプロンプトを準備
-    local task_prompt="以下のPLAN.mdの内容を基に、具体的な実装タスクを作成してください。
-
-=== PLAN.mdの内容 ===
-$plan_content
-=== PLAN.mdの内容ここまで ===
-
-以下の形式でTASK.mdを作成してください:
-
-# $task_name - 実装タスク
-
-## 実装概要
-PLAN.mdから抽出した実装の要点
-
-## 実装手順
-### 1. 環境セットアップ
-- 必要なツール・ライブラリのインストール
-- プロジェクト初期化
-
-### 2. ファイル作成
-- 作成するファイルと内容の詳細
-- ディレクトリ構造
-
-### 3. コード実装
-- 各ファイルの実装内容
-- 関数・クラスの定義
-
-### 4. テスト実装
-- テストケースの作成
-- テスト実行方法
-
-### 5. 動作確認
-- 確認手順
-- 期待される結果
-
-## チェックリスト
-- [ ] 環境セットアップ完了
-- [ ] 基本ファイル作成完了
-- [ ] 機能実装完了
-- [ ] テスト実装完了
-- [ ] 動作確認完了
-
-## コマンド例
-実際に実行するコマンドの例を記載
-
-このタスクは実装時に参照され、最終的にPR.mdが作成されます。"
+    # タスク作成用のプロンプトを読み込み
+    local task_prompt=$(load_prompt "task" "$task_name" "$plan_content")
+    if [ $? -ne 0 ]; then
+        show_error "プロンプトファイルの読み込みに失敗しました"
+        exit 1
+    fi
     
     # AIツールを実行
     local ai_cmd=$(get_ai_command)
@@ -519,61 +478,12 @@ execute_task() {
         task_content="タスクファイルが見つかりません"
     fi
     
-    # 実行用のプロンプトを準備
-    local execute_prompt="以下のTASK.mdの内容に基づいて実装を行い、成果物としてPR.mdを作成してください。
-
-=== TASK.mdの内容 ===
-$task_content
-=== TASK.mdの内容ここまで ===
-
-以下の形式でPR.md（プルリクエスト形式の成果物）を作成してください:
-
-# $task_name - 実装完了報告
-
-## 実装概要
-実装した内容の概要
-
-## 変更内容
-### 追加ファイル
-- ファイル名: 説明
-
-### 変更ファイル
-- ファイル名: 変更内容
-
-## 実装詳細
-### 主要機能
-実装した主要機能の説明
-
-### 技術的な実装ポイント
-- 使用した技術・ライブラリ
-- 設計上の工夫
-- パフォーマンス考慮点
-
-## テスト結果
-### 実行したテスト
-- テストケース
-- 結果
-
-### 動作確認
-- 確認した項目
-- スクリーンショット（必要に応じて）
-
-## 使用方法
-### セットアップ
-インストール・セットアップ手順
-
-### 実行方法
-基本的な使用方法
-
-## 今後の課題・改善点
-- 残課題
-- 改善提案
-
-## レビューポイント
-レビュー時に確認してほしい点
-
----
-このPR.mdは実装の完了を示し、レビューや今後の参考資料として使用されます。"
+    # 実行用のプロンプトを読み込み
+    local execute_prompt=$(load_prompt "execute" "$task_name" "$task_content")
+    if [ $? -ne 0 ]; then
+        show_error "プロンプトファイルの読み込みに失敗しました"
+        exit 1
+    fi
     
     # AIツールを実行
     local ai_cmd=$(get_ai_command "execute")
