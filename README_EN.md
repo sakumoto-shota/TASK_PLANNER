@@ -10,7 +10,7 @@
 
 A simple AI-powered task planner - A Bash tool that provides step-by-step support from requirements to implementation
 
-> [English README](README_EN.md) | [日本語 README](README.md)
+> [English README](README_EN.md) | [日本語 README](README.md) | [中文 README](README_ZH.md) | [한국어 README](README_KO.md) | [Español README](README_ES.md) | [Français README](README_FR.md)
 
 ## Overview
 

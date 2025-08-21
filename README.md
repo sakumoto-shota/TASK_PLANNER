@@ -10,7 +10,7 @@
 
 簡易的な AI タスクプランナー - 要件から実装まで段階的にサポートする Bash ツール
 
-> [English README](README_EN.md) | [日本語 README](README.md)
+> [English README](README_EN.md) | [日本語 README](README.md) | [中文 README](README_ZH.md) | [한국어 README](README_KO.md) | [Español README](README_ES.md) | [Français README](README_FR.md)
 
 ## 概要
 
