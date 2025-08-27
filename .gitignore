@@ -109,3 +109,6 @@ AI_TASKS/
 # claude
 .claude/
 CLAUDE.md
+
+# Allow specific claude command file
+!.claude/commands/issue-plan.md
